@@ -1,4 +1,4 @@
-from .. import stackWithGetMin, doubleStackQueue
+from . import stackWithGetMin, doubleStackQueue,rankstack
 import unittest
 
 
@@ -30,11 +30,18 @@ class TestDoubleStackQueue(unittest.TestCase):
         self.assertEqual(self.queue.pop(), 3)
         self.assertEqual(self.queue.pop(), 2)
 
+class TestRankStack(unittest.TestCase):
+    def setUp(self):
+        self.stack = rankstack.RankStack([2,3,5,7,4,0,9])
+    def test_rank(self):
+        self.stack.rank()
+        self.assertEqual(self.stack.stack,[0,2,3,4,5,7,9])
 
 def suite():
     suite = unittest.TestSuite()
     suite.addTest(TestStackWithGetMin('test_stackWithGetmin'))
     suite.addTest(TestDoubleStackQueue('test_doubleStackQueue'))
+    suite.addTest(TestRankStack('test_rank'))
     return suite
 
 
